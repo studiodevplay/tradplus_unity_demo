@@ -17,7 +17,7 @@ namespace TradplusSDK.Api
 
     public class TradplusAds
     {
-        public static string PluginVersion = "1.1.1";
+        public static string PluginVersion = "1.1.7";
 
         private static TradplusAds _instance;
 
@@ -180,6 +180,16 @@ namespace TradplusSDK.Api
         public bool IsOpenPersonalizedAd()
         {
             return TPAds.Instance().IsOpenPersonalizedAd();
+        }
+
+        ///<summary>
+        ///开启获取AuthId  false 关闭 ，true 开启
+        ///</summary>
+        public void SetAuthUID(bool needUid)
+        {
+        #if UNITY_ANDROID
+                    TPAds.Instance().SetAuthUID(needUid);
+        #endif
         }
 
         ///<summary>

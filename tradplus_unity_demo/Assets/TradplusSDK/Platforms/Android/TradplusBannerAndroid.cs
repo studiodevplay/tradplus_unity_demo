@@ -37,6 +37,9 @@ namespace TradplusSDK.Android
             info.Add("closeAutoShow", extra.closeAutoShow);
             info.Add("isSimpleListener", extra.isSimpleListener);
             info.Add("className", extra.className);
+            info.Add("maxWaitTime", extra.maxWaitTime);
+            info.Add("openAutoLoadCallback", extra.openAutoLoadCallback);
+            info.Add("backgroundColor", extra.backgroundColor);
 
 
             info.Add("localParams", extra.localParams);

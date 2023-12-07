@@ -41,6 +41,12 @@ namespace TradplusSDK.Api
         ///本地参数
         ///</summary>
         public Dictionary<string, object> localParams;
+
+        public bool openAutoLoadCallback;
+
+        public float maxWaitTime;
+
+
         public TPRewardVideoExtra()
         {
         }
@@ -113,6 +119,17 @@ namespace TradplusSDK.Api
         public void SetCustomAdInfo(string adUnitId, Dictionary<string, string> customAdInfo)
         {
             TPRewardVideo.Instance().SetCustomAdInfo(adUnitId, customAdInfo);
+        }
+
+        ///<summary>
+        ///开发者在 OnApplicationQuit 生命周期时调用关闭回调
+        ///仅iOS支持
+        ///</summary>
+        public void ClearCallback()
+        {
+#if UNITY_IOS
+            TPRewardVideo.Instance().ClearCallback();
+#endif
         }
 
 //接口回调

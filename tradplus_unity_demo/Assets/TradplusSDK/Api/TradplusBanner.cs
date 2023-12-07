@@ -70,10 +70,21 @@ namespace TradplusSDK.Api
         ///居中模式 仅iOS支持
         ///</summary>
         public TradplusBase.AdContentMode contentMode;
+
+        ///<summary>
+        ///自定义背景色 例如：#FFFFFF
+        ///</summary>
+        public string backgroundColor;
+
+        public bool openAutoLoadCallback;
+
+        public float maxWaitTime;
+
         public TPBannerExtra()
         {
-            width = 320;
+            width = 0;
             height = 50;
+            backgroundColor = "";
             adPosition = TradplusBase.AdPosition.TopLeft;
         }
     }
@@ -179,8 +190,19 @@ namespace TradplusSDK.Api
             TPBanner.Instance().SetCustomAdInfo(adUnitId, customAdInfo);
         }
 
+        ///<summary>
+        ///开发者在 OnApplicationQuit 生命周期时调用关闭回调
+        ///仅iOS支持
+        ///</summary>
+        public void ClearCallback()
+        {
+#if UNITY_IOS
+            TPInterstitial.Instance().ClearCallback();
+#endif
+        }
 
-//接口回调
+
+        //接口回调
 
         //常用回调接口
 

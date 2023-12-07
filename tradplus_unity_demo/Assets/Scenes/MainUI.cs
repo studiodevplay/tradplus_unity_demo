@@ -27,7 +27,8 @@ public class MainUI : MonoBehaviour
         TradplusAds.Instance().SetCustomMap(customMap);
         TradplusAds.Instance().SetCnServer(onlyCn);
         TradplusAds.Instance().InitSDK(appId);
-
+//传入TradPlus后台的应用id
+        TradplusAds.Instance().openTradPlusTool(appId);
         //全局展示回调
         TradplusAds.Instance().AddGlobalAdImpression(OnGlobalAdImpression);
     }
@@ -35,6 +36,7 @@ public class MainUI : MonoBehaviour
     void OnGlobalAdImpression(Dictionary<string, object> adInfo)
     {
         Configure.Instance().ShowLog("OnGlobalAdImpression ------ adInfo:" + Json.Serialize(adInfo));
+        Configure.Instance().ShowLog("OnGlobalAdImpression ------ adInfo:" + Json.Serialize(adInfo),"1");
     }
 
     // Update is called once per frame

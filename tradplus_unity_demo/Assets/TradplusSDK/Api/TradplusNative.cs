@@ -58,6 +58,11 @@ namespace TradplusSDK.Api
         ///特殊参数，仅Android支持
         ///</summary>
         public Dictionary<string, object> localParams;
+
+        public bool openAutoLoadCallback;
+
+        public float maxWaitTime;
+
         public TPNativeExtra()
         {
             width = 320;
@@ -164,9 +169,20 @@ namespace TradplusSDK.Api
             TPNative.Instance().SetCustomAdInfo(adUnitId, customAdInfo);
         }
 
-//接口回调
+        ///<summary>
+        ///开发者在 OnApplicationQuit 生命周期时调用关闭回调
+        ///仅iOS支持
+        ///</summary>
+        public void ClearCallback()
+        {
+#if UNITY_IOS
+            TPNative.Instance().ClearCallback();
+#endif
+        }
 
-//常用回调接口
+        //接口回调
+
+        //常用回调接口
 
         ///<summary>
         ///加载成功 string adUnitId,Dictionary adInfo

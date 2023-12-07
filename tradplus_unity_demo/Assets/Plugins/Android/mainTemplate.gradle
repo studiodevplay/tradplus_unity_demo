@@ -8,7 +8,7 @@
             url "https://maven.google.com"
         }
         maven {
-            url "https://artifact.bytedance.com/repository/pangle" // Assets/TradplusSDK/Networks/Android/n19/Editor/Dependencies.xml:17
+            url "https://artifact.bytedance.com/repository/pangle" // Assets/TradplusSDK/Networks/Android/n17/Editor/Dependencies.xml:15, Assets/TradplusSDK/Networks/Android/n19/Editor/Dependencies.xml:16
         }
         mavenLocal()
         mavenCentral()
@@ -21,25 +21,26 @@ apply plugin: 'com.android.library'
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 // Android Resolver Dependencies Start
-    implementation 'androidx.appcompat:appcompat:1.3.0-alpha02' // Assets/TradplusSDK/Networks/Android/n57/Editor/Dependencies.xml:6
-    implementation 'androidx.legacy:legacy-support-v4:1.0.0' // Assets/TradplusSDK/Networks/Android/n57/Editor/Dependencies.xml:4
-    implementation 'com.adcolony:sdk:4.8.0' // Assets/TradplusSDK/Networks/Android/n4/Editor/Dependencies.xml:10
-    implementation 'com.applovin:applovin-sdk:11.10.1' // Assets/TradplusSDK/Networks/Android/n9/Editor/Dependencies.xml:10
-    implementation 'com.bigossp:bigo-ads:3.0.0' // Assets/TradplusSDK/Networks/Android/n57/Editor/Dependencies.xml:10
-    implementation 'com.facebook.android:audience-network-sdk:6.14.0' // Assets/TradplusSDK/Networks/Android/n1/Editor/Dependencies.xml:10
-    implementation 'com.google.android.gms:play-services-ads:22.1.0' // Assets/TradplusSDK/Networks/Android/n2/Editor/Dependencies.xml:10
+    implementation 'androidx.appcompat:appcompat:1.3.0-alpha02' // Assets/TradplusSDK/Networks/Android/n57/Editor/Dependencies.xml:8
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0' // Assets/TradplusSDK/Networks/Android/n57/Editor/Dependencies.xml:6
+    implementation 'com.applovin:applovin-sdk:11.11.3' // Assets/TradplusSDK/Networks/Android/n9/Editor/Dependencies.xml:10
+    implementation 'com.bigossp:bigo-ads:4.0.2' // Assets/TradplusSDK/Networks/Android/n57/Editor/Dependencies.xml:10
+    implementation 'com.facebook.android:audience-network-sdk:6.16.0' // Assets/TradplusSDK/Networks/Android/n1/Editor/Dependencies.xml:10
+    implementation 'com.google.android.gms:play-services-ads:22.3.0' // Assets/TradplusSDK/Networks/Android/n2/Editor/Dependencies.xml:10
     implementation 'com.google.android.gms:play-services-ads-identifier:17.0.0' // Assets/TradplusSDK/Networks/Android/n19/Editor/Dependencies.xml:12
     implementation 'com.google.code.gson:gson:2.8.6' // Assets/TradplusSDK/Networks/Android/n40/Editor/Dependencies.xml:10
-    implementation 'com.pangle.global:ads-sdk:5.2.0.5' // Assets/TradplusSDK/Networks/Android/n19/Editor/Dependencies.xml:14
+    implementation 'com.pangle.cn:ads-sdk-pro:5.5.1.7' // Assets/TradplusSDK/Networks/Android/n17/Editor/Dependencies.xml:12
     implementation 'com.tradplusad:om-sdk:1.4.4' // Assets/TradplusSDK/Networks/Android/n40/Editor/Dependencies.xml:14
-    implementation 'com.tradplusad:tp_exchange:40.9.8.10.1' // Assets/TradplusSDK/Networks/Android/n40/Editor/Dependencies.xml:12
-    implementation 'com.tradplusad:tradplus:9.8.0.1' // Assets/TradplusSDK/TradplusManager/Editor/TPEditorGradleDependencies.xml:3
-    implementation 'com.tradplusad:tradplus-adcolony:4.9.8.0.1' // Assets/TradplusSDK/Networks/Android/n4/Editor/Dependencies.xml:12
-    implementation 'com.tradplusad:tradplus-applovin:9.9.8.0.1' // Assets/TradplusSDK/Networks/Android/n9/Editor/Dependencies.xml:12
-    implementation 'com.tradplusad:tradplus-bigo:57.9.8.0.1' // Assets/TradplusSDK/Networks/Android/n57/Editor/Dependencies.xml:12
-    implementation 'com.tradplusad:tradplus-facebook:1.9.8.0.1' // Assets/TradplusSDK/Networks/Android/n1/Editor/Dependencies.xml:12
-    implementation 'com.tradplusad:tradplus-googlex:2.9.8.0.1' // Assets/TradplusSDK/Networks/Android/n2/Editor/Dependencies.xml:12
-    implementation 'com.tradplusad:tradplus-pangle:19.9.8.0.1' // Assets/TradplusSDK/Networks/Android/n19/Editor/Dependencies.xml:10
+    implementation 'com.tradplusad:tp_exchange:40.10.2.0.1' // Assets/TradplusSDK/Networks/Android/n40/Editor/Dependencies.xml:12
+    implementation 'com.tradplusad:tradplus:10.2.0.1' // Assets/TradplusSDK/TradplusManager/Editor/TPEditorGradleDependencies.xml:3
+    implementation 'com.tradplusad:tradplus-applovin:9.10.2.0.1' // Assets/TradplusSDK/Networks/Android/n9/Editor/Dependencies.xml:12
+    implementation 'com.tradplusad:tradplus-bigo:57.10.2.0.1' // Assets/TradplusSDK/Networks/Android/n57/Editor/Dependencies.xml:12
+    implementation 'com.tradplusad:tradplus-facebook:1.10.2.0.1' // Assets/TradplusSDK/Networks/Android/n1/Editor/Dependencies.xml:12
+    implementation 'com.tradplusad:tradplus-googlex:2.10.2.0.1' // Assets/TradplusSDK/Networks/Android/n2/Editor/Dependencies.xml:12
+    implementation 'com.tradplusad:tradplus-pangle:19.10.2.0.1' // Assets/TradplusSDK/Networks/Android/n19/Editor/Dependencies.xml:10
+    implementation 'com.tradplusad:tradplus-toutiao:17.10.2.0.1' // Assets/TradplusSDK/Networks/Android/n17/Editor/Dependencies.xml:10
+    implementation 'com.tradplusad:tradplus-unity:5.10.2.0.1' // Assets/TradplusSDK/Networks/Android/n5/Editor/Dependencies.xml:10
+    implementation 'com.unity3d.ads:unity-ads:4.6.1' // Assets/TradplusSDK/Networks/Android/n5/Editor/Dependencies.xml:12
 // Android Resolver Dependencies End
 **DEPS**}
 

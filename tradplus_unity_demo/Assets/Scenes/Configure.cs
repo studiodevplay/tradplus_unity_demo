@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 
 public class Configure
@@ -88,12 +89,28 @@ public class Configure
             return interActiveUnitId;
         }
     }
-
+    private  StreamWriter fileWriter;
     public void ShowLog(string logStr)
     {
         Debug.LogWarning(logStr);
+    
+        string logFilePath = Path.Combine(Application.persistentDataPath, "log.txt");
+        Debug.LogWarning("filePath"+logFilePath);
+        File.AppendAllText(logFilePath, logStr);
     }
-
+    public void ShowLog(string logStr,string test)
+    {
+        if (fileWriter != null)
+        {
+            fileWriter.Close();
+            fileWriter.Dispose();
+        }
+        Debug.LogWarning(logStr);
+    
+        string logFilePath = Path.Combine(Application.persistentDataPath, "OnGlobalAdImpression.txt");
+        Debug.LogWarning("filePath"+logFilePath);
+        File.AppendAllText(logFilePath, logStr);
+    }
     private Dictionary<string, string> mainCustomMap;
     public Dictionary<string, string> MainCustomMap
     {

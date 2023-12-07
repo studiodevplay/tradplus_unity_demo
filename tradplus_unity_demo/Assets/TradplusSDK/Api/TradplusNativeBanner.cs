@@ -40,7 +40,7 @@ namespace TradplusSDK.Api
         public float y;
 
         ///<summary>
-        ///原生横幅广告展示 width，默认 320
+        ///原生横幅广告展示 width，默认 全屏
         ///</summary>
         public float width;
 
@@ -68,11 +68,21 @@ namespace TradplusSDK.Api
         ///</summary>
         public string className;
 
+        ///<summary>
+        ///自定义背景色 例如：#FFFFFF(仅iOS支持)
+        ///</summary>
+        public string backgroundColor;
+
+        public bool openAutoLoadCallback;
+
+        public float maxWaitTime;
+
         public TPNativeBannerExtra()
         {
-            width = 320;
+            width = 0;
             height = 50;
             adPosition = TradplusBase.AdPosition.TopLeft;
+            backgroundColor = "";
         }
     }
 
@@ -176,9 +186,20 @@ namespace TradplusSDK.Api
             TPNativeBanner.Instance().SetCustomAdInfo(adUnitId, customAdInfo);
         }
 
-//接口回调
+        ///<summary>
+        ///开发者在 OnApplicationQuit 生命周期时调用关闭回调
+        ///仅iOS支持
+        ///</summary>
+        public void ClearCallback()
+        {
+#if UNITY_IOS
+            TPNativeBanner.Instance().ClearCallback();
+#endif
+        }
 
-//常用回调接口
+        //接口回调
+
+        //常用回调接口
 
         ///<summary>
         ///加载成功 string adUnitId,Dictionary adInfo

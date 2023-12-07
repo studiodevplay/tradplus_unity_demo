@@ -209,6 +209,11 @@ namespace TradplusSDK.Android
             TradPlusSdk.CallStatic("setPrivacyUserAgree", open);
 
         }
+        public void SetAuthUID(bool needUid)
+        {
+            TradPlusSdk.CallStatic("setAuthUID", needUid);
+
+        }
 
         public void SetMaxDatabaseSize(int size)
         {

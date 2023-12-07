@@ -50,6 +50,11 @@ namespace TradplusSDK.Api
         ///特殊参数，仅Android支持
         ///</summary>
         public Dictionary<string, object> localParams;
+
+        public bool openAutoLoadCallback;
+
+        public float maxWaitTime;
+
         public TPInterActiveExtra()
         {
             width = 50;

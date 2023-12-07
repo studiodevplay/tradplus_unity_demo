@@ -422,7 +422,7 @@ namespace Tardplus.TradplusEditorManager.Editor
                         {
                             tempVersion = tempVersion.Substring(0, 3);
                         }
-                        if (int.Parse(tempVersion) >= 491)
+                        if (int.Parse(tempVersion) == 491)
                         {
                             TardplusSaveIOSPodInfo podInfo = new TardplusSaveIOSPodInfo();
                             podInfo.nameEn = desc.nameEn;
@@ -801,22 +801,22 @@ namespace Tardplus.TradplusEditorManager.Editor
 
         private void AddDefNetwork()
         {
-            foreach (TardplusNetworkDesc desc in networkInfo.networkList)
-            {
-                if (Equals(desc.uniqueNetworkId.ToLower(), "n40"))
-                {
-                    if(desc.has_Android)
-                    {
-                        string sdkId = configInfo.Android.sdkId;
-                        GetNetworkConfig(sdkId, desc.android_networkId, 1, desc);
-                    }
-                    if (desc.has_iOS)
-                    {
-                        string sdkId = configInfo.iOS.sdkId;
-                        GetNetworkConfig(sdkId, desc.ios_networkId, 2, desc);
-                    }
-                }
-            }
+            //foreach (TardplusNetworkDesc desc in networkInfo.networkList)
+            //{
+            //    if (Equals(desc.uniqueNetworkId.ToLower(), "n40"))
+            //    {
+            //        if(desc.has_Android)
+            //        {
+            //            string sdkId = configInfo.Android.sdkId;
+            //            GetNetworkConfig(sdkId, desc.android_networkId, 1, desc);
+            //        }
+            //        if (desc.has_iOS)
+            //        {
+            //            string sdkId = configInfo.iOS.sdkId;
+            //            GetNetworkConfig(sdkId, desc.ios_networkId, 2, desc);
+            //        }
+            //    }
+            //}
         }
 
         //获取本地已配置信息
