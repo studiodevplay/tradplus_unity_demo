@@ -1,14 +1,21 @@
 ﻿using System;
 using TradplusSDK.Android;
 using System.Collections.Generic;
+#if UNITY_EDITOR
+using TradplusSDK.Unity;
+#elif UNITY_ANDROID
+using TradplusSDK.Android;
+#else
+#endif
 
 namespace TradplusSDK.Api
 {
-
-#if UNITY_IOS
-    public class TPInterActive
-#else
+#if UNITY_EDITOR
+    public class TPInterActive : TPSdkUnityInterActive
+#elif UNITY_ANDROID
     public class TPInterActive : TradplusInterActiveAndroid
+#else
+    public class TPInterActive
 #endif
     { }
 
@@ -83,13 +90,20 @@ namespace TradplusSDK.Api
         ///<param name="extra">附加参数</param> 
         public void LoadInterActiveAd(string adUnitId, TPInterActiveExtra extra = null)
         {
-#if UNITY_ANDROID
+#if UNITY_EDITOR
+            if (this.OnInterActiveLoaded != null)
+            {
+                Dictionary<string, object> adInfo = new Dictionary<string, object>();
+                this.OnInterActiveLoaded(adUnitId, adInfo);
+            }
+#elif  UNITY_ANDROID
             if (extra == null)
             {
                 extra = new TPInterActiveExtra();
             }
             TPInterActive.Instance().LoadInterActiveAd(adUnitId, extra);
 #endif
+
         }
 
         ///<summary>
@@ -110,7 +124,7 @@ namespace TradplusSDK.Api
         ///<param name="adUnitId">广告位ID</param>
         public bool InterActiveAdReady(string adUnitId)
         {
-#if UNITY_ANDROID
+#if UNITY_ANDROID || UNITY_EDITOR
             return TPInterActive.Instance().InterActiveAdReady(adUnitId);
 #else
             return false;

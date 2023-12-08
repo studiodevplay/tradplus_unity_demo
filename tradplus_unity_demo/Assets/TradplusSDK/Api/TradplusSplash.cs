@@ -1,18 +1,30 @@
 ﻿using System;
 using System.Collections.Generic;
-#if UNITY_IOS
+
+#if UNITY_EDITOR
+using TradplusSDK.Unity;
+#elif UNITY_IOS
 using TradplusSDK.iOS;
-#endif
+#elif UNITY_ANDROID
 using TradplusSDK.Android;
+#elif UNITY_EDITOR
+using TradplusSDK.Unity;
+#else
+using TradplusSDK.Unity;
+#endif
 using UnityEngine;
 
 namespace TradplusSDK.Api
 {
     public class TPSplash :
-#if UNITY_IOS
-    TradplusSplashiOS
+#if UNITY_EDITOR
+        TPSdkUnitySplash
+#elif UNITY_IOS
+        TradplusSplashiOS
+#elif UNITY_ANDROID
+        TradplusSplashAndroid
 #else
-    TradplusSplashAndroid
+        TPSdkUnitySplash
 #endif
     { }
 
@@ -64,11 +76,20 @@ namespace TradplusSDK.Api
         ///<param name="extra">附加参数</param> 
         public void LoadSplashAd(string adUnitId, TPSplashExtra extra = null)
         {
+#if UNITY_EDITOR
+            if (this.OnSplashLoaded != null)
+            {
+                Dictionary<string, object> adInfo = new Dictionary<string, object>();
+                this.OnSplashLoaded(adUnitId, adInfo);
+            }
+
+#elif UNITY_IOS || UNITY_ANDROID
             if (extra == null)
             {
                 extra = new TPSplashExtra();
             }
             TPSplash.Instance().LoadSplashAd(adUnitId, extra);
+#endif  
         }
 
         ///<summary>
@@ -117,7 +138,9 @@ namespace TradplusSDK.Api
         ///</summary>
         public void ClearCallback()
         {
-#if UNITY_IOS
+#if UNITY_EDITOR
+
+#elif UNITY_IOS
             TPSplash.Instance().ClearCallback();
 #endif
         }

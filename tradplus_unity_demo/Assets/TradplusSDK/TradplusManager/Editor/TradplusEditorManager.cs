@@ -16,7 +16,7 @@ namespace Tardplus.TradplusEditorManager.Editor
     {
         private static TradplusEditorManager _instance;
 
-        public static string[] specialPodArray = { "KSAdSDK", "OgurySdk", "HyBid", "smaato-ios-sdk", "BaiduMobAdSDK", "BigoADS" };
+        public static string[] specialPodArray = { "KSAdSDK", "OgurySdk", "HyBid", "smaato-ios-sdk", "BaiduMobAdSDK", "BigoADS", "MaioSDK-v2", "AmazonPublisherServicesSDK" };
 
         public static TradplusEditorManager Instance()
         {

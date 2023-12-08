@@ -31,6 +31,7 @@ public class MainUI : MonoBehaviour
         TradplusAds.Instance().openTradPlusTool(appId);
         //全局展示回调
         TradplusAds.Instance().AddGlobalAdImpression(OnGlobalAdImpression);
+        MUnityDataSendBridge.getInstance().setDebug(true);
     }
 
     void OnGlobalAdImpression(Dictionary<string, object> adInfo)

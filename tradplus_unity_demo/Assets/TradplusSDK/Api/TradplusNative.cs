@@ -1,17 +1,26 @@
 ﻿using System;
-#if UNITY_IOS
+#if UNITY_EDITOR
+using TradplusSDK.Unity;
+#elif UNITY_IOS
 using TradplusSDK.iOS;
-#endif
+#elif UNITY_ANDROID
 using TradplusSDK.Android;
+#else
+using TradplusSDK.Unity;
+#endif
 using System.Collections.Generic;
 
 namespace TradplusSDK.Api
 {
     public class TPNative :
-#if UNITY_IOS
+#if UNITY_EDITOR
+        TPSdkUnityNative
+#elif UNITY_IOS
         TradplusNativeiOS
-#else
+#elif UNITY_ANDROID
         TradplusNativeAndroid
+#else
+        TPSdkUnityNative
 #endif
     { }
 
@@ -92,11 +101,19 @@ namespace TradplusSDK.Api
         ///<param name="extra">附加参数</param> 
         public void LoadNativeAd(string adUnitId, TPNativeExtra extra = null)
         {
+#if UNITY_EDITOR
+            if (this.OnNativeLoaded != null)
+            {
+                Dictionary<string, object> adInfo = new Dictionary<string, object>();
+                this.OnNativeLoaded(adUnitId, adInfo);
+            }
+#elif UNITY_IOS || UNITY_ANDROID
             if (extra == null)
             {
                 extra = new TPNativeExtra();
             }
             TPNative.Instance().LoadNativeAd(adUnitId, extra);
+#endif    
         }
 
         ///<summary>
@@ -175,7 +192,9 @@ namespace TradplusSDK.Api
         ///</summary>
         public void ClearCallback()
         {
-#if UNITY_IOS
+#if UNITY_EDITOR
+
+#elif UNITY_IOS
             TPNative.Instance().ClearCallback();
 #endif
         }

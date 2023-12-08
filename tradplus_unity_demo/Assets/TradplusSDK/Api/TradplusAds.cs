@@ -1,23 +1,33 @@
 ﻿using System;
-#if UNITY_IOS
+#if UNITY_EDITOR
+using TradplusSDK.Unity;
+#elif UNITY_IOS
 using TradplusSDK.iOS;
-#endif
+#elif UNITY_ANDROID
 using TradplusSDK.Android;
+#else
+using TradplusSDK.Unity;
+#endif
+
 using System.Collections.Generic;
 
 namespace TradplusSDK.Api
 {
     public class TPAds :
-#if UNITY_IOS
-        TradplusAdsiOS
+#if UNITY_EDITOR
+    TPSdkUnityAds
+#elif UNITY_IOS
+    TradplusAdsiOS
+#elif UNITY_ANDROID
+     TradplusAdsAndroid
 #else
-        TradplusAdsAndroid
+    TPSdkUnityAds
 #endif
     { }
 
     public class TradplusAds
     {
-        public static string PluginVersion = "1.1.7";
+        public static string PluginVersion = "1.1.8";
 
         private static TradplusAds _instance;
 
@@ -187,9 +197,9 @@ namespace TradplusSDK.Api
         ///</summary>
         public void SetAuthUID(bool needUid)
         {
-        #if UNITY_ANDROID
+#if UNITY_ANDROID
                     TPAds.Instance().SetAuthUID(needUid);
-        #endif
+#endif
         }
 
         ///<summary>
@@ -322,6 +332,19 @@ namespace TradplusSDK.Api
                 this.onGlobalAdImpression = OnGlobalAdImpression;
                 TPAds.Instance().OnGlobalAdImpression += OnGlobalAdImpression;
             }
+        }
+
+        ///<summary>
+        ///开发者在 OnApplicationQuit 生命周期时调用关闭回调
+        ///仅iOS支持
+        ///</summary>
+        public void ClearCallback()
+        {
+#if UNITY_EDITOR
+
+#elif UNITY_IOS
+            TPAds.Instance().ClearCallback();
+#endif
         }
 
         ///<summary>

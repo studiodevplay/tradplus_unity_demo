@@ -239,11 +239,24 @@ namespace Tardplus.TradplusEditorManager.Editor
             //确认pod是否有Verve
             if (pathDir.Exists)
             {
-                string[] sdkPathArray = new string[] {
-                    "\"${PODS_CONFIGURATION_BUILD_DIR}/HyBid\"",
-                    "\"${PODS_ROOT}/HyBid/PubnativeLite/PubnativeLite/OMSDK-1.3.29\"",
-                    "\"${PODS_XCFRAMEWORKS_BUILD_DIR}/HyBid/Core\""
-                };
+                string omsdkStr = finidString(pathArray,"${PODS_ROOT}/HyBid/PubnativeLite/PubnativeLite/OMSDK-","\"");
+                string[] sdkPathArray;
+                if (omsdkStr != null)
+                {
+                    omsdkStr = "\"" + omsdkStr + "\"";
+                    sdkPathArray = new string[] {
+                        omsdkStr,
+                        "\"${PODS_CONFIGURATION_BUILD_DIR}/HyBid\"",
+                        "\"${PODS_XCFRAMEWORKS_BUILD_DIR}/HyBid/Core\""
+                    };
+                }
+                else
+                {
+                    sdkPathArray = new string[] {
+                        "\"${PODS_CONFIGURATION_BUILD_DIR}/HyBid\"",
+                        "\"${PODS_XCFRAMEWORKS_BUILD_DIR}/HyBid/Core\""
+                    };
+                }
 
                 string[] frameworkArray = new string[] {
                     "-framework \"HyBid\"",
@@ -334,6 +347,53 @@ namespace Tardplus.TradplusEditorManager.Editor
                 removeSetting(pathArray, sdkPathArray, frameworkArray);
                 AddFrameworkPath(buildPath, sdkPathArray, frameworkArray);
             }
+            //Maio-v2
+            string MaioDKPath = buildPath + "/Pods/Target Support Files/MaioSDK-v2/";
+            pathDir = new DirectoryInfo(MaioDKPath);
+            //确认pod是否有Maio-v2
+            if (pathDir.Exists)
+            {
+                string[] sdkPathArray = new string[] {
+                "\"${PODS_ROOT}/MaioSDK-v2\"",
+                "\"${PODS_XCFRAMEWORKS_BUILD_DIR}/MaioSDK-v2\"",
+            };
+
+                string[] frameworkArray = new string[] {
+                "-framework \"Maio\""
+            };
+                removeSetting(pathArray, sdkPathArray, frameworkArray);
+                AddFrameworkPath(buildPath, sdkPathArray, frameworkArray);
+            }
+            ///AmazonPublisherServicesSDK
+            string AmazonDKPath = buildPath + "/Pods/Target Support Files/AmazonPublisherServicesSDK/";
+            pathDir = new DirectoryInfo(AmazonDKPath);
+            //确认pod是否有Amazon
+            if (pathDir.Exists)
+            {
+                string podStr = finidString(pathArray, "${PODS_ROOT}/AmazonPublisherServicesSDK/APS_iOS_SDK-", "\"");
+                string[] sdkPathArray;
+                if (podStr != null)
+                {
+                    podStr = "\"" + podStr + "\"";
+                    sdkPathArray = new string[] {
+                        podStr,
+                        "\"${PODS_XCFRAMEWORKS_BUILD_DIR}/AmazonPublisherServicesSDK\"",
+                    };
+                }
+                else
+                {
+                    sdkPathArray  = new string[] {
+                        "\"${PODS_XCFRAMEWORKS_BUILD_DIR}/AmazonPublisherServicesSDK\"",
+                    };
+                }
+
+                string[] frameworkArray = new string[] {
+                "-framework \"DTBiOSSDK\""
+            };
+                removeSetting(pathArray, sdkPathArray, frameworkArray);
+                AddFrameworkPath(buildPath, sdkPathArray, frameworkArray);
+            }
+
         }
 
 
@@ -384,6 +444,32 @@ namespace Tardplus.TradplusEditorManager.Editor
                     File.WriteAllText(fliePath, fileData);
                 }
             }
+        }
+        private static string finidString(string[] pathArray, string startStr, string endStr)
+        {
+            foreach (string fliePath in pathArray)
+            {
+                if (System.IO.File.Exists(fliePath))
+                {
+                    string str = File.ReadAllText(fliePath);
+                    int startIndex = str.IndexOf(startStr);
+                    string callBackStr = "";
+                    if (startIndex > 0)
+                    {
+                        string tempStr = str.Substring(startIndex);
+                        int endIndex = tempStr.IndexOf(endStr);
+                        if (endIndex > 0)
+                        {
+                            callBackStr = tempStr.Remove(endIndex);
+                        }
+                    }
+                    if (callBackStr.Length > 0)
+                    {
+                        return callBackStr;
+                    }
+                }
+            }
+            return null;
         }
     }
 }

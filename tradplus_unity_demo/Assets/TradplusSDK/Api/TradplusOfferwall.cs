@@ -1,17 +1,26 @@
 ﻿using System;
 using System.Collections.Generic;
-#if UNITY_IOS
+#if UNITY_EDITOR
+using TradplusSDK.Unity;
+#elif UNITY_IOS
 using TradplusSDK.iOS;
-#endif
+#elif UNITY_ANDROID
 using TradplusSDK.Android;
+#else
+using TradplusSDK.Unity;
+#endif
 
 namespace TradplusSDK.Api
 {
     public class TPOfferwall :
-#if UNITY_IOS
+#if UNITY_EDITOR
+        TPSdkUnityOfferwall
+#elif UNITY_IOS
         TradplusOfferwalliOS
-#else
+#elif UNITY_ANDROID
         TradplusOfferwallAndroid
+#else
+        TPSdkUnityOfferwall
 #endif
     { }
 
@@ -62,11 +71,19 @@ namespace TradplusSDK.Api
         ///<param name="extra">附加参数</param> 
         public void LoadOfferwallAd(string adUnitId, TPOfferwallExtra extra = null)
         {
+#if UNITY_EDITOR
+            if (this.OnOfferwallLoaded != null)
+            {
+                Dictionary<string, object> adInfo = new Dictionary<string, object>();
+                this.OnOfferwallLoaded(adUnitId, adInfo);
+            }
+#elif  UNITY_IOS || UNITY_ANDROID
             if (extra == null)
             {
                 extra = new TPOfferwallExtra();
             }
             TPOfferwall.Instance().LoadOfferwallAd(adUnitId, extra);
+#endif  
         }
 
         ///<summary>
@@ -85,7 +102,7 @@ namespace TradplusSDK.Api
         ///<param name="adUnitId">广告位ID</param>
         public bool OfferwallAdReady(string adUnitId)
         {
-            return TPOfferwall.Instance().OfferwallAdReady(adUnitId); ;
+            return TPOfferwall.Instance().OfferwallAdReady(adUnitId);
         }
 
         ///<summary>
@@ -160,7 +177,9 @@ namespace TradplusSDK.Api
         ///</summary>
         public void ClearCallback()
         {
-#if UNITY_IOS
+#if UNITY_EDITOR
+
+#elif UNITY_IOS
             TPOfferwall.Instance().ClearCallback();
 #endif
         }

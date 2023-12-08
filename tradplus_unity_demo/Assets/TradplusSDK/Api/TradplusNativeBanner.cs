@@ -1,18 +1,28 @@
 ﻿using System;
 using System.Collections.Generic;
-#if UNITY_IOS
+#if UNITY_EDITOR
+using TradplusSDK.Unity;
+#elif UNITY_IOS
 using TradplusSDK.iOS;
-#endif
+#elif UNITY_ANDROID
 using TradplusSDK.Android;
+#else
+using TradplusSDK.Unity;
+#endif
 
 namespace TradplusSDK.Api
 {
     public class TPNativeBanner :
-#if UNITY_IOS
+#if UNITY_EDITOR
+        TPSdkUnityNativeBanner
+#elif UNITY_IOS
         TradplusNativeBanneriOS
-#else
+#elif UNITY_ANDROID
         TradplusNativeBannerAndroid
+#else
+        TPSdkUnityNativeBanner
 #endif
+
     { }
 
     ///<summary>
@@ -107,11 +117,20 @@ namespace TradplusSDK.Api
         ///<param name="extra">附加参数</param> 
         public void LoadNativeBannerAd(string adUnitId, string sceneId = "", TPNativeBannerExtra extra = null)
         {
+#if UNITY_EDITOR
+            if (this.OnNativeBannerLoaded != null)
+            {
+                Dictionary<string, object> adInfo = new Dictionary<string, object>();
+                this.OnNativeBannerLoaded(adUnitId, adInfo);
+            }
+
+#elif UNITY_IOS || UNITY_ANDROID
             if (extra == null)
             {
                 extra = new TPNativeBannerExtra();
             }
             TPNativeBanner.Instance().LoadNativeBannerAd(adUnitId, sceneId, extra);
+#endif
         }
 
         ///<summary>
@@ -192,7 +211,9 @@ namespace TradplusSDK.Api
         ///</summary>
         public void ClearCallback()
         {
-#if UNITY_IOS
+#if UNITY_EDITOR
+
+#elif UNITY_IOS
             TPNativeBanner.Instance().ClearCallback();
 #endif
         }

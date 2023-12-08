@@ -361,6 +361,11 @@ public class NativeUI : MonoBehaviour
     {
         infoStr = "";
         Configure.Instance().ShowLog("NativeUI OnImpression ------ adunit:" + adunit + "; adInfo: " + Json.Serialize(adInfo));
+#if TRADPLUS
+        MBridgeRevenueParamsEntity mBridgeRevenueParamsEntity = new MBridgeRevenueParamsEntity(MBridgeRevenueParamsEntity.ATTRIBUTION_PLATFORM_ADJUST, "123");
+        mBridgeRevenueParamsEntity.tradplusadInfo = adInfo;
+        MBridgeRevenueManager.Track(mBridgeRevenueParamsEntity);
+#endif
     }
 
     void OnShowFailed(string adunit, Dictionary<string, object> adInfo, Dictionary<string, object> error)
