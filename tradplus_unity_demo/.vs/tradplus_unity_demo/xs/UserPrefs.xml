@@ -1,36 +1,28 @@
 ﻿<Properties StartupConfiguration="{8628482B-5566-1E9F-3872-48C7CFA9E2CE}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/TradplusSDK/Api/TradplusInterstitial.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/ROAS/Scripts/MBridgeRevenueManager.cs">
     <Files>
-      <File FileName="Assets/Scenes/NativeBannerUI.cs" Line="239" Column="62" />
+      <File FileName="Assets/ROAS/Scripts/MBridgeRevenueManager.cs" Line="193" Column="11" />
+      <File FileName="Assets/ROAS/Scripts/MUnityDataSendBridge.cs" />
+      <File FileName="Assets/Scenes/MainUI.cs" />
+      <File FileName="Assets/ROAS/Scripts/MBridgeRevenueParamsEntity.cs" />
+      <File FileName="Assets/Scenes/Configure.cs" />
       <File FileName="Assets/Scenes/BannerUI.cs" />
-      <File FileName="Assets/Scenes/InterstitialUI.cs" Line="41" Column="60" />
-      <File FileName="Assets/Scenes/NativeUI.cs" Line="213" Column="39" />
-      <File FileName="Assets/Scenes/OfferwallUI.cs" Line="42" Column="61" />
-      <File FileName="Assets/Scenes/RewardedUI.cs" Line="42" Column="65" />
-      <File FileName="Assets/Scenes/PrivacyUI.cs" />
-      <File FileName="Assets/Scenes/MainUI.cs" Line="15" Column="60" />
-      <File FileName="Assets/Scenes/Configure.cs" Line="116" Column="6" />
-      <File FileName="Assets/TradplusSDK/Api/TradplusBanner.cs" />
-      <File FileName="Assets/TradplusSDK/Api/TradplusInterstitial.cs" Line="20" Column="42" />
-      <File FileName="Assets/TradplusSDK/Api/TradplusNative.cs" />
-      <File FileName="Assets/TradplusSDK/Api/TradplusNativeBanner.cs" />
-      <File FileName="Assets/TradplusSDK/Api/TradplusOfferwall.cs" />
-      <File FileName="Assets/TradplusSDK/Api/TradplusRewardVideo.cs" />
-      <File FileName="Assets/TradplusSDK/Api/TradplusAds.cs" />
-      <File FileName="Assets/TradplusSDK/Api/TradplusBase.cs" />
+      <File FileName="Assets/Scenes/InterActiveUI.cs" />
+      <File FileName="Assets/Scenes/InterstitialUI.cs" />
+      <File FileName="Assets/Scenes/NativeBannerUI.cs" />
+      <File FileName="Assets/Scenes/NativeUI.cs" />
+      <File FileName="Assets/Scenes/RewardedUI.cs" />
+      <File FileName="Assets/ROAS/Scripts/MBridgeSDKManager.cs" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="tradplus_unity_demo" expanded="True">
             <Node name="Assets" expanded="True">
-              <Node name="ExternalDependencyManager" expanded="True">
-                <Node name="Editor" expanded="True" />
-              </Node>
-              <Node name="Scenes" expanded="True" />
-              <Node name="TradplusSDK" expanded="True">
-                <Node name="Api" expanded="True">
-                  <Node name="TradplusInterstitial.cs" selected="True" />
+              <Node name="ROAS" expanded="True">
+                <Node name="Plugins" expanded="True" />
+                <Node name="Scripts" expanded="True">
+                  <Node name="MBridgeRevenueManager.cs" selected="True" />
                 </Node>
               </Node>
             </Node>
@@ -41,7 +33,7 @@
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="c8d5e797-e263-4572-8359-976af9666229" />
+  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="0029eada-e2de-4a3b-bcfd-e6bab143f3fd" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>

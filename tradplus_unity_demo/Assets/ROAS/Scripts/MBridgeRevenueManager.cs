@@ -190,10 +190,10 @@ public class MBridgeRevenueManager
 #if UNITY_IOS || UNITY_IPHONE
             _trackAdRevenueWithAdRevenueModel(TPAdJsonStr);
 #elif UNITY_ANDROID
-          
+            MUnityDataSendBridge.getInstance().trackAdRevenue(TPAdJsonStr);
 #endif
 #endif
-            
+
 
             #endregion
         }
